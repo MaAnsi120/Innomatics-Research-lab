@@ -1,33 +1,57 @@
-document.getElementById('employee-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const department = document.getElementById('department').value;
-    const employeeId = document.getElementById('employee-id').value;
-    const profilePicture = document.getElementById('profile-picture').value;
+const app = express();
+app.use(bodyParser.json());
+app.use(cors());
 
-    // Add employee to the list
-    const list = document.getElementById('employee-list');
-    const listItem = document.createElement('li');
-    listItem.innerHTML = <a href="mailto:${email}">${name}</a>;
-    list.appendChild(listItem);
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/employeeDB', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then(() => console.log('MongoDB connected...'))
+    .catch(err => console.log(err));
 
-    // Add employee details to the table
-    const table = document.getElementById('employee-table').getElementsByTagName('tbody')[0];
-    const newRow = table.insertRow();
+// Define the Employee Schema
+const employeeSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    department: { type: String, required: true },
+    employeeId: { type: Number, required: true },
+    profilePicture: { type: String }
+});
 
-    const nameCell = newRow.insertCell(0);
-    const idCell = newRow.insertCell(1);
-    const departmentCell = newRow.insertCell(2);
-    const profileCell = newRow.insertCell(3);
+// Create the Employee Model
+const Employee = mongoose.model('Employee', employeeSchema);
 
-    nameCell.innerHTML = name;
-    idCell.innerHTML = employeeId;
-    departmentCell.innerHTML = department;
-    profileCell.innerHTML = <img src="${profilePicture}" alt="Profile Picture" width="50">;
+// POST route to add a new employee
+app.post('/employees', async (req, res) => {
+    const { name, email, department, employeeId, profilePicture } = req.body;
 
-    // Clear the form
-    document.getElementById('employee-form').reset();
+    try {
+        const newEmployee = new Employee({ name, email, department, employeeId, profilePicture });
+        await newEmployee.save();
+        res.status(201).send('Employee added successfully');
+    } catch (err) {
+        res.status(400).send('Error adding employee');
+    }
+});
+
+// GET route to retrieve all employees
+app.get('/employees', async (req, res) => {
+    try {
+        const employees = await Employee.find();
+        res.json(employees);
+    } catch (err) {
+        res.status(400).send('Error fetching employees');
+    }
+});
+
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(Server running on port ${PORT});
 });
