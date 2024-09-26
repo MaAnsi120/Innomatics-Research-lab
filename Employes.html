@@ -1,97 +1,80 @@
-<!DOCTYPE html>
+[12:01 am, 27/9/2024] Mansi: <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Directory</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Employee Registration</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Company Directory Portal</h1>
 
-        <section class="registration">
-            <h2>Employee Registration Form</h2>
-            <form>
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+    <!-- Employee Registration Form -->
+    <section>
+        <h2>Employee Registration Form</h2>
+        <form id="employee-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
 
-                <label for="department">Department:</label>
-                <select id="department" name="department">
-                    <option value="it">IT</option>
-                    <option value="hr">HR</option>
-                    <option value="finance">Finance</option>
-                    <option value="marketing">Marketing</option>
-                </select>
+            <label for="department">Department:</label>
+            <select id="department" name="department">
+                <option value="HR">HR</option>
+                <option value="IT">IT</option>
+                <option value="Sales">Sales</option>
+            </select><br><br>
 
-                <label for="employee-id">Employee ID:</label>
-                <input type="text" id="employee-id" name="employee-id" required>
+            <label for="employee-id">Employee ID:</label>
+            <input type="number" id="employee-id" name="employee-id" required><br><br>
 
-                <label for="profile-pic">Profile Picture URL:</label>
-                <input type="url" id="profile-pic" name="profile-pic" required>
+            <label for="profile-picture">Profile Picture URL:</label>
+            <input type="url" id="profile-picture" name="profile-picture"><br><br>
 
-                <button type="submit">Register Employee</button>
-            </form>
-        </section>
-        <br><br><br>
+            <button type="submit">Register Employee</button>
+        </form>
+    </section>
 
-        
-    <section id="employee-list">
+    <!-- Employee List Section -->
+    <section>
         <h2>Employee List</h2>
-        <ul>
-          <li>1.  <a href="mailto:john@example.com">John Doe - john@example.com</a></li>
-          <li>2. <a href="mailto:jane@example.com">Jane Smith - jane@example.com</a></li>
+        <ol id="employee-list">
+            <!-- Dynamically populated employee list -->
+        </ol>
+    </section>
 
-        </ul>
-      </section>
-        <br>
-        <br><br>
+    <!-- Employee Details Table -->
+    <section>
+        <h2>Employee Details</h2>
+        <table id="employee-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Employee ID</th>
+                    <th>Department</th>
+                    <th>Profile Picture</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamically populated employee details -->
+            </tbody>
+        </table>
+    </section>
 
-        <section class="employee-details">
-            <h2>Employee Details</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Employee ID</th>
-                        <th>Department</th>
-                        <th>Profile Picture</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>12345</td>
-                        <td>IT</td>
-                        <td><img src="https://via.placeholder.com/50" alt="John's Profile"></td>
-                    </tr>
-                    <tr>
-                        <td>Jane Smith</td>
-                        <td>67890</td>
-                        <td>HR</td>
-                        <td><img src="https://via.placeholder.com/50" alt="Jane's Profile"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-    <section id="company-location">
+    <!-- Embedded Map Section -->
+    <section>
         <h2>Company Location</h2>
-        <div class="map-container">
-          
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.198500690699!2d78.3874145746294!3d17.498035299609203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91f3fdf6bde9%3A0x752db86a6ab3be2a!2sInnomatics%20Research%20Labs!5e0!3m2!1sen!2sin!4v1727280478210!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </section>
-    </main>
-  
-    <footer>
-      <div class="copyright">
-        <p>&copy; 2024 Company Directory Portal. All Rights Reserved.</p>
-      </div>
-    </footer>
-    </div>
+        <iframe
+            width="600"
+            height="450"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Innomatics+Research+Labs">
+        </iframe>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
+[12:01 am, 27/9/2024] Mansi: 
