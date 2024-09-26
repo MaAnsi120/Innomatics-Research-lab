@@ -3,184 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Registration</title>
-    <style>
-        /* Global Styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        /* Form Styling */
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            display: inline-block;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            text-align: left;
-            margin-bottom: 5px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        /* List Styling */
-        ol {
-            text-align: left;
-            padding-left: 40px;
-            margin-top: 20px;
-        }
-
-        /* Table Styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-    </style>
+    <title>Company Directory</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Company Directory Portal</h1>
 
-    <!-- Employee Registration Form -->
-    <section>
-        <h2>Employee Registration Form</h2>
-        <form id="employee-form">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required><br><br>
+        <section class="registration">
+            <h2>Employee Registration Form</h2>
+            <form>
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
 
-            <label for="department">Department:</label>
-            <select id="department" name="department">
-                <option value="HR">HR</option>
-                <option value="IT">IT</option>
-                <option value="Sales">Sales</option>
-            </select><br><br>
+                <label for="department">Department:</label>
+                <select id="department" name="department">
+                    <option value="it">IT</option>
+                    <option value="hr">HR</option>
+                    <option value="finance">Finance</option>
+                    <option value="marketing">Marketing</option>
+                </select>
 
-            <label for="employee-id">Employee ID:</label>
-            <input type="number" id="employee-id" name="employee-id" required><br><br>
+                <label for="employee-id">Employee ID:</label>
+                <input type="text" id="employee-id" name="employee-id" required>
 
-            <label for="profile-picture">Profile Picture URL:</label>
-            <input type="url" id="profile-picture" name="profile-picture"><br><br>
+                <label for="profile-pic">Profile Picture URL:</label>
+                <input type="url" id="profile-pic" name="profile-pic" required>
 
-            <button type="submit">Register Employee</button>
-        </form>
-    </section>
+                <button type="submit">Register Employee</button>
+            </form>
+        </section>
+        <br><br><br>
 
-    <!-- Employee List Section -->
-    <section>
+        
+    <section id="employee-list">
         <h2>Employee List</h2>
-        <ol id="employee-list">
-            <!-- Dynamically populated employee list -->
-        </ol>
-    </section>
+        <ul>
+          <li>1.  <a href="mailto:john@example.com">John Doe - john@example.com</a></li>
+          <li>2. <a href="mailto:jane@example.com">Jane Smith - jane@example.com</a></li>
 
-    <!-- Employee Details Table -->
-    <section>
-        <h2>Employee Details</h2>
-        <table id="employee-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Employee ID</th>
-                    <th>Department</th>
-                    <th>Profile Picture</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Dynamically populated employee details -->
-            </tbody>
-        </table>
-    </section>
+        </ul>
+      </section>
+        <br>
+        <br><br>
 
-    <!-- Embedded Map Section -->
-    <section>
+        <section class="employee-details">
+            <h2>Employee Details</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Employee ID</th>
+                        <th>Department</th>
+                        <th>Profile Picture</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>12345</td>
+                        <td>IT</td>
+                        <td><img src="https://via.placeholder.com/50" alt="John's Profile"></td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>67890</td>
+                        <td>HR</td>
+                        <td><img src="https://via.placeholder.com/50" alt="Jane's Profile"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    <section id="company-location">
         <h2>Company Location</h2>
-        <iframe
-            width="600"
-            height="450"
-            style="border:0"
-            loading="lazy"
-            allowfullscreen
-            src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Innomatics+Research+Labs">
-        </iframe>
-    </section>
-
-    <script>
-        document.getElementById('employee-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const department = document.getElementById('department').value;
-            const employeeId = document.getElementById('employee-id').value;
-            const profilePicture = document.getElementById('profile-picture').value;
-
-            // Add employee to the list
-            const list = document.getElementById('employee-list');
-            const listItem = document.createElement('li');
-            listItem.innerHTML = <a href="mailto:${email}">${name}</a>;
-            list.appendChild(listItem);
-
-            // Add employee details to the table
-            const table = document.getElementById('employee-table').getElementsByTagName('tbody')[0];
-            const newRow = table.insertRow();
-
-            const nameCell = newRow.insertCell(0);
-            const idCell = newRow.insertCell(1);
-            const departmentCell = newRow.insertCell(2);
-            const profileCell = newRow.insertCell(3);
-
-            nameCell.innerHTML = name;
-            idCell.innerHTML = employeeId;
-            departmentCell.innerHTML = department;
-            profileCell.innerHTML = <img src="${profilePicture}" alt="Profile Picture" width="50">;
-
-            // Clear the form
-            document.getElementById('employee-form').reset();
-        });
-    </script>
-
+        <div class="map-container">
+          
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.198500690699!2d78.3874145746294!3d17.498035299609203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91f3fdf6bde9%3A0x752db86a6ab3be2a!2sInnomatics%20Research%20Labs!5e0!3m2!1sen!2sin!4v1727280478210!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </section>
+    </main>
+  
+    <footer>
+      <div class="copyright">
+        <p>&copy; 2024 Company Directory Portal. All Rights Reserved.</p>
+      </div>
+    </footer>
+    </div>
 </body>
 </html>
