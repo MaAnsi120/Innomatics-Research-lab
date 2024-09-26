@@ -1,0 +1,54 @@
+const mongoose = require('mongoose');
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/employeeDB', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then(() => console.log('MongoDB connected...'))
+    .catch(err => console.log(err));
+
+// Define the Employee Schema
+const employeeSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    department: { type: String, required: true },
+    employeeId: { type: Number, required: true },
+    profilePicture: { type: String }
+});
+
+// Create the Employee Model
+const Employee = mongoose.model('Employee', employeeSchema);
+
+// Add a new employee to the database
+async function addEmployee(name, email, department, employeeId, profilePicture) {
+    const newEmployee = new Employee({
+        name,
+        email,
+        department,
+        employeeId,
+        profilePicture
+    });
+
+    try {
+        await newEmployee.save();
+        console.log('Employee added successfully');
+    } catch (error) {
+        console.error('Error adding employee:', error);
+    }
+}
+
+// Fetch all employees from the database
+async function getEmployees() {
+    try {
+        const employees = await Employee.find();
+        console.log('Employees:', employees);
+        return employees;
+    } catch (error) {
+        console.error('Error fetching employees:', error);
+    }
+}
+
+// Example usage
+addEmployee('John Doe', 'john@example.com', 'IT', 101, 'https://example.com/john.png');
+getEmployees();
